@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
+df = pd.read_csv("antibiotic_resistance.csv")   
 import joblib
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score   #
+from sklearn.metrics import accuracy_score   
+
+st.write("Welcome! This app predicts antibiotic resistance location using ML and suggests effective antibiotics.")
+st.markdown("### Welcome! 👋")
+
 
 # Load dataset
 data = pd.read_csv("antibiotic_resistance.csv")
@@ -41,6 +46,19 @@ def run_app():
     sample = "test_sample"  # Replace with actual sample data
     prediction = predict_location(sample)
     return prediction
+inputs = {
+    "IMIPENEM": imipenem,
+    "CEFTAZIDIME": ceftazidime,
+    "GENTAMICIN": gentamicin,
+    "AUGMENTIN": augmentin,
+    "CIPROFLOXACIN": ciprofloxacin
+}
+
+suggested = [ab for ab, val in inputs.items() if val == 0]
+
+st.markdown("### Decision Support")
+st.write("Suggested Antibiotics (Sensitive):", suggested)
+
 
 if __name__ == "__main__":
     result = run_app()
@@ -71,6 +89,23 @@ if uploaded_file:
     new_data = pd.read_csv(uploaded_file)
     predictions = model.predict(new_data)
     st.write(predictions)
+    st.write("Model Accuracy:", accuracy_score(y_test, y_pred))
+import networkx as nx
+import matplotlib.pyplot as plt
 
+st.markdown("### Resistance Gene Network")
 
+G = nx.Graph()
+antibiotics = ["IMIPENEM","CEFTAZIDIME","GENTAMICIN","AUGMENTIN","CIPROFLOXACIN"]
+G.add_nodes_from(antibiotics)
 
+# Example: connect nodes if both resistant in same sample
+for _, row in df.iterrows():
+    resistant = [ab for ab in antibiotics if row[ab] == 1]
+    for i in range(len(resistant)):
+        for j in range(i+1, len(resistant)):
+            G.add_edge(resistant[i], resistant[j])
+
+plt.figure(figsize=(6,6))
+nx.draw(G, with_labels=True, node_color="lightblue", font_weight="bold")
+st.pyplot(plt)
