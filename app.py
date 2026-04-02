@@ -5,9 +5,8 @@ import joblib
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score   
-
-st.write("Welcome! This app predicts antibiotic resistance location using ML and suggests effective antibiotics.")
 st.markdown("### Welcome! 👋")
+st.write("Welcome! This app predicts antibiotic resistance location using ML and suggests effective antibiotics.")
 
 
 # Load dataset
