@@ -133,14 +133,17 @@ for i in antibiotics:
 fig, ax = plt.subplots()
 nx.draw(G, with_labels=True, node_color="lightblue", node_size=2000, font_size=12, ax=ax)
 st.pyplot(fig)
+st.header("Antibiotic Network Visualization")
+st.pyplot(fig)
+
 
 # Example: connect nodes if both resistant in same sample
-for _, row in df.iterrows():
-    resistant = [ab for ab in antibiotics if row[ab] == 1]
-    for i in range(len(resistant)):
-        for j in range(i+1, len(resistant)):
-            G.add_edge(resistant[i], resistant[j])
+# for _, row in df.iterrows():
+#     resistant = [ab for ab in antibiotics if row[ab] == 1]
+#     for i in range(len(resistant)):
+#         for j in range(i+1, len(resistant)):
+#             G.add_edge(resistant[i], resistant[j])
 
-plt.figure(figsize=(6,6))
-nx.draw(G, with_labels=True, node_color="lightblue", font_weight="bold")
-st.pyplot(plt)
+# plt.figure(figsize=(6,6))
+# nx.draw(G, with_labels=True, node_color="lightblue", font_weight="bold")
+# st.pyplot(plt)
