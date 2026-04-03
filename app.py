@@ -134,7 +134,7 @@ fig, ax = plt.subplots()
 nx.draw(G, with_labels=True, node_color="lightblue", node_size=2000, font_size=12, ax=ax)
 st.pyplot(fig)
 st.header("Antibiotic Network Visualization")
-st.pyplot(fig)
+
 
 
 # Example: connect nodes if both resistant in same sample
