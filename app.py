@@ -15,28 +15,44 @@ data = pd.read_csv("antibiotic_resistance.csv")
 # Features and target
 X = data[['IMIPENEM', 'CEFTAZIDIME', 'GENTAMICIN', 'AUGMENTIN', 'CIPROFLOXACIN']]
 y = data['Location']
+for col in X.columns:
+    print(f"{col}: min={df[col].min()}, max={df[col].max()}")
 
-# Train model (you could also load a pre-trained model with joblib)
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+y = le.fit_transform(y)
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = DecisionTreeClassifier(random_state=42)
+
+model = RandomForestClassifier()
 model.fit(X_train, y_train)
+
 # Evaluate accuracy
 y_pred = model.predict(X_test)
+print("Predictions:", le.inverse_transform(y_pred))
 print("Accuracy:", accuracy_score(y_test, y_pred))
 
 # Streamlit UI
 st.title("Antibiotic Resistance Location Predictor")
 
-imipenem = st.number_input("IMIPENEM", min_value=0, max_value=1, step=1)
-ceftazidime = st.number_input("CEFTAZIDIME", min_value=0, max_value=1, step=1)
-gentamicin = st.number_input("GENTAMICIN", min_value=0, max_value=1, step=1)
-augmentin = st.number_input("AUGMENTIN", min_value=0, max_value=1, step=1)
-ciprofloxacin = st.number_input("CIPROFLOXACIN", min_value=0, max_value=1, step=1)
+import streamlit as st
+
+imipenem = st.number_input("Enter IMIPENEM value", min_value=0, max_value=40, step=1)
+ceftazidime = st.number_input("Enter CEFTAZIDIME value", min_value=0, max_value=32, step=1)
+gentamicin = st.number_input("Enter GENTAMICIN value", min_value=0, max_value=30, step=1)
+augmentin = st.number_input("Enter AUGMENTIN value", min_value=0, max_value=35, step=1)
+ciprofloxacin = st.number_input("Enter CIPROFLOXACIN value", min_value=0, max_value=35, step=1)
 
 if st.button("Predict Location"):
     sample = [[imipenem, ceftazidime, gentamicin, augmentin, ciprofloxacin]]
     prediction = model.predict(sample)
     st.write("Predicted Location:", prediction[0])
+    st.success(f"Predicted Location: {le.inverse_transform(prediction)[0]}")
+    st.write("Input values:", sample) 
+
 def predict_location(sample):
    # Here you would use the model to predict the location based on the input sample
     return "Predicted location: App is running"
@@ -65,9 +81,16 @@ if __name__ == "__main__":
     
 # Save model after training
 joblib.dump(model, "arpmodel.pkl")
+joblib.dump(le, "label_encoder.pkl")
+
 
 # Later, load it in app.py
 model = joblib.load("arpmodel.pkl")
+le = joblib.load("label_encoder.pkl")
+sample = [[imipenem, ceftazidime, gentamicin, augmentin, ciprofloxacin]]
+prediction = model.predict(sample)
+st.success(f"Predicted Location: {le.inverse_transform(prediction)[0]}")
+
 import matplotlib.pyplot as plt
 import streamlit as st
 
@@ -96,7 +119,20 @@ st.markdown("### Resistance Gene Network")
 
 G = nx.Graph()
 antibiotics = ["IMIPENEM","CEFTAZIDIME","GENTAMICIN","AUGMENTIN","CIPROFLOXACIN"]
-G.add_nodes_from(antibiotics)
+for ab in antibiotics:
+        G.add_node(ab)
+
+    # Example: connect antibiotics if their values are correlated
+corr = df[antibiotics].corr()
+for i in antibiotics:
+        for j in antibiotics:
+            if i != j and corr.loc[i, j] > 0.7:  # threshold for strong correlation
+                G.add_edge(i, j)
+
+    # Draw graph
+fig, ax = plt.subplots()
+nx.draw(G, with_labels=True, node_color="lightblue", node_size=2000, font_size=12, ax=ax)
+st.pyplot(fig)
 
 # Example: connect nodes if both resistant in same sample
 for _, row in df.iterrows():
