@@ -31,7 +31,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 
 ⚙️ Installation & Usage
 1. Clone the Repository
-git clone https://github.com/your-username/arpmodel.git
+git clone https://github.com/ronaksharma2908/arpmodel.git
 cd arpmodel
 
 
