@@ -27,7 +27,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 - matplotlib / seaborn (visualizations)
 - networkx (gene network visualization)
 - Streamlit (UI + deployment)
-- 
+  
 
    
 📂 Project Structure
@@ -81,6 +81,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 
   👉 Live Demo Link (https://arpmodel-ronaksharma29.streamlit.app/)
   
+  
 
 
 📊 Example Workflow
@@ -89,6 +90,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 - Model predicts resistant/sensitive location.
 - Decision Support panel highlights thresholds, ranges, and risk scores.
 - Visualizations show gene networks and resistance trends.
+  
   
 
   
@@ -99,9 +101,11 @@ It demonstrates how ML + decision support + visualization can create a real‑ti
 
 
 
+
 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
+
 
 
 
