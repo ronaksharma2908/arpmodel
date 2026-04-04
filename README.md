@@ -1,4 +1,5 @@
 🦠 ARPModel: Antibiotic Resistance Prediction
+
 📌 Overview
 Antibiotic resistance is a growing global health challenge. ARPModel is a machine learning–powered web app that predicts bacterial resistance patterns based on numeric antibiotic sensitivity values.
 Built with Python, scikit‑learn, and Streamlit, the app provides real‑time predictions, decision support insights, and interactive visualizations to help clinicians and researchers interpret resistance data.
