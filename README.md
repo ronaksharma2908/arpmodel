@@ -1,9 +1,13 @@
 🦠 ARPModel: Antibiotic Resistance Prediction
 
+
+
 📌 Overview
 
 Antibiotic resistance is a growing global health challenge. ARPModel is a machine learning–powered web app that predicts bacterial resistance patterns based on numeric antibiotic sensitivity values.
-Built with Python, scikit‑learn, and Streamlit, the app provides real‑time predictions, decision support insights, and interactive visualizations to help clinicians and researchers interpret resistance data.
+Built with Python, scikit‑learn, and Streamlit, the app provides real‑time predictions, decision support insights, and interactive visualizations to help clinicians and researchers interpret resistance data
+
+
 
 🚀 Features
 
@@ -13,6 +17,8 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 - Visualization: Gene network graphs and resistance patterns for deeper analysis.
 - Deployment: Hosted on Streamlit Cloud, accessible via any browser.
 
+  
+
 🛠️ Tech Stack
 
 - Python
@@ -21,7 +27,9 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 - matplotlib / seaborn (visualizations)
 - networkx (gene network visualization)
 - Streamlit (UI + deployment)
+- 
 
+   
 📂 Project Structure
 
 
@@ -38,6 +46,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 ├── requirements.txt       # Dependencies
 
 └── README.md              # Project documentation
+
 
 
 
@@ -62,6 +71,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 4. Run the App
    
    streamlit run app.py
+   
 
 
 
@@ -70,6 +80,7 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
   The app is deployed on Streamlit Cloud.
 
   👉 Live Demo Link (https://arpmodel-ronaksharma29.streamlit.app/)
+  
 
 
 📊 Example Workflow
@@ -78,15 +89,21 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 - Model predicts resistant/sensitive location.
 - Decision Support panel highlights thresholds, ranges, and risk scores.
 - Visualizations show gene networks and resistance trends.
+  
 
+  
 🏆 Hackathon Context
 
 This project was developed for a Hackathon on Antibiotic Resistance Prediction.
 It demonstrates how ML + decision support + visualization can create a real‑time, judge‑ready clinical tool.
 
+
+
 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
+
+
 
 📜 License
 
