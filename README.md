@@ -37,19 +37,23 @@ Built with Python, scikit‑learn, and Streamlit, the app provides real‑time p
 
 ⚙️ Installation & Usage
 1. Clone the Repository
+   
 git clone https://github.com/ronaksharma2908/arpmodel.git
 cd arpmodel
 
 
 2. Install Dependencies
+   
 pip install -r requirements.txt
 
 
 3. Train the Model (if needed)
+   
 python train.py
 
 
 4. Run the App
+   
 streamlit run app.py
 
 
@@ -57,7 +61,8 @@ streamlit run app.py
 🌐 Deployment
 
 The app is deployed on Streamlit Cloud.
-👉 Live Demo Link (your-streamlit-link-here in Bing)
+
+👉 Live Demo Link (https://arpmodel-ronaksharma29.streamlit.app/)
 
 
 📊 Example Workflow
